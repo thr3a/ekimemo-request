@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001182722) do
+ActiveRecord::Schema.define(version: 20151002091242) do
 
   create_table "requests", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20151001182722) do
     t.integer  "favor_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "Favor_list"
   end
 
 end
