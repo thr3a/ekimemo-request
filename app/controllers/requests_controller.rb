@@ -40,6 +40,6 @@ class RequestsController < ApplicationController
 	end
 	private
 	def permitted_params
-		params.require(:request).permit(:title, :userid, :username, :state, :favor_num, :favor_list)
+		params.require(:request).permit(:title, :userid, :username, :state, :favor_num, :favor_list, :is_anony)
 	end
 end
