@@ -2,7 +2,13 @@
 	.container
 		h1 駅メモリクエスト！(非公式)
 		p 駅メモをもっとより良くする為にあなたの意見をお聞かせ下さい！
-		p = link_to '要望を追加', new_request_path
+		- if flash[:notice]
+			.alert.alert-success = flash[:notice]
+		- if session[:username]
+			p = button_to "リクエストを書く(#{session[:username]})" , new_request_path, class: "btn btn-lg btn-primary", method: "get"
+			p = button_to 'ログアウト', logout_path, class: "btn btn-warning", method: "get"
+		- else
+			p = button_to 'リクエストを書く(要Twitter認証)', '/auth/twitter', class: "btn btn-lg btn-primary"
 
 .container
 	.panel.panel-default

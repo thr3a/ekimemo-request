@@ -46,3 +46,5 @@ group :development do
 end
 gem "twitter-bootstrap-rails"
 gem "slim-rails"
+gem 'omniauth'
+gem 'omniauth-twitter'

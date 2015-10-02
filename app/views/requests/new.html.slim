@@ -1,10 +1,12 @@
+.page-header
+	h1 リクエスト追加
+- if !session[:username]
+	redirect_to :root_path, notice: "ログインしなければ投稿できません"
 = form_for @request do |f|
 	- if @request.errors.any?
-		#error_explanation
-			h2 = "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
-			ul
-				- @request.errors.full_messages.each do |message|
-					li = message
+		- @request.errors.full_messages.each do |message|
+			.alert.alert-danger = message
+
 	.field
 		= f.label :title
 		= f.text_field :title
