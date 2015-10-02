@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
 	# GET /
 	def index
-		@data = Request.all
+		@requests = Request.all
 		render "index"
 	end
 

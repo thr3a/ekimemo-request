@@ -1,1 +1,24 @@
-p = @data.to_json
+.jumbotron
+	.container
+		h1 駅メモリクエスト！(非公式)
+		p 駅メモをもっとより良くする為にあなたの意見をお聞かせ下さい！
+		p = link_to '要望を追加', new_request_path
+
+.container
+	.panel.panel-default
+		.panel-body
+			table.table
+				thead
+					tr
+						th リクエスト内容
+						th 賛成数
+				tbody
+				- @requests.each do |req|
+					tr
+						td
+							h3 = req.title
+						td
+							p
+								button.btn.btn-default
+									span.badge 4
+									span 賛成
