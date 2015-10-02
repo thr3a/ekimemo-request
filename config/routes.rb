@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :requests, expect: [:edit, :update, :destroy, :index]
   root 'requests#index'
-  
+
   get '/auth/:provider/callback', to: 'sessions#callback'
   post '/auth/:provider/callback', to: 'sessions#callback'
   get '/logout' => 'sessions#destroy', :as => :logout
-
+  post '/requests/vote/:id' =>'requests#vote'
   # namespace :dashboard do
   #   resources :posts, except: [:show]
   # end
