@@ -1,28 +1,9 @@
-.jumbotron
-	.container
-
-		h1 駅メモ！リクエスト(非公式)
-		p 俺の考えた最強の駅メモを書いてけ（適当
-
-		- if flash[:notice]
-			.container
-				.alert.alert-success = flash[:notice]
-		- if flash[:alert]
-			.container
-				.alert.alert-danger = flash[:alert]
-
-		b 注意
-		ul
-			li 非公式であり、(株)モバイルファクトリーとは一切関係ありません。
-			li 同一人物による多数投稿防止の為Twitterでのログインを設けております。匿名の投稿も可能ですし、一切のKEY保存・API実行を行いません。
-
-		- if session[:username]
-			p = button_to "リクエストを書く(#{session[:username]})" , new_request_path, class: "btn btn-lg btn-primary", method: "get"
-			p = button_to 'ログアウト', logout_path, class: "btn btn-warning", method: "get"
-		- else
-			p = button_to 'リクエストを書く(要Twitter認証)', '/auth/twitter', class: "btn btn-lg btn-primary"
-
 .container
+	- if session[:username]
+		p = button_to "リクエストを書く(#{session[:username]})" , new_request_path, class: "btn btn-lg btn-primary", method: "get"
+		p = button_to 'ログアウト', logout_path, class: "btn btn-warning", method: "get"
+	- else
+		p = button_to 'リクエストを書く(要Twitter認証)', '/auth/twitter', class: "btn btn-lg btn-primary"
 	.row
 		table.table
 			thead
