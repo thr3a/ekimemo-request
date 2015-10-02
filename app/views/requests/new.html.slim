@@ -1,19 +1,13 @@
 .page-header
 	h1 リクエスト追加
-- if !session[:username]
-	redirect_to :root_path, notice: "ログインしなければ投稿できません"
-= form_for @request do |f|
+= bootstrap_form_for(@request, inline_errors: false) do |f|
 	- if @request.errors.any?
 		- @request.errors.full_messages.each do |message|
 			.alert.alert-danger = message
 
 	.field
-		= f.label :title
 		= f.text_field :title
 	.field
-		= f.label :userid
-		= f.text_field :userid
+		= f.hidden_field :userid, value: session[:userid]
 	.field
-		= f.label :username
-		= f.text_field :username
-	.actions = f.submit
+		= f.submit "確認", data: { title: "確認",confirm: "登録します。よろしいですか？", commit: "登録！"}

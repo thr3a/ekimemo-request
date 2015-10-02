@@ -8,6 +8,7 @@ class RequestsController < ApplicationController
 
 	# GET /requests/new
 	def new
+		redirect_to root_path, notice:"ログインしていなければ投稿できません" if session[:username].nil?
 		@request = Request.new
 	end
 

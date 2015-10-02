@@ -48,3 +48,4 @@ gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'bootstrap_form'
