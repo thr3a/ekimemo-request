@@ -17,6 +17,8 @@ class RequestsController < ApplicationController
 		@request = Request.new(permitted_params)
 		@request.favor_num = 1
 		@request.favor_list = session[:userid]
+		@request.userid = session[:userid]
+		@request.username = session[:username]
 		if @request.save
 			redirect_to root_path, notice:"投稿に成功しました"
 		else

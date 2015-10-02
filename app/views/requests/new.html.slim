@@ -9,10 +9,6 @@
 		.field
 			= f.text_field :title
 		.field
-			= f.hidden_field :userid, value: session[:userid]
-		.field
-			= f.hidden_field :username, value: session[:username]
-		.field
 			= f.check_box :is_anony, label: "匿名で投稿(投稿者が表示されません)"
 		.field
 			= f.submit "確認", data: { title: "確認",confirm: "登録します。よろしいですか？", commit: "登録！"}
