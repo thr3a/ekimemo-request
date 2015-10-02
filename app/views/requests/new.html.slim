@@ -4,10 +4,12 @@
 	- if @request.errors.any?
 		- @request.errors.full_messages.each do |message|
 			.alert.alert-danger = message
-
+	p 10文字以上100文字以内
 	.field
 		= f.text_field :title
 	.field
 		= f.hidden_field :userid, value: session[:userid]
+	.field
+		= f.hidden_field :username, value: session[:username]
 	.field
 		= f.submit "確認", data: { title: "確認",confirm: "登録します。よろしいですか？", commit: "登録！"}

@@ -1,9 +1,13 @@
 .jumbotron
 	.container
-		h1 駅メモリクエスト！(非公式)
-		p 駅メモをもっとより良くする為にあなたの意見をお聞かせ下さい！
+		h1 駅メモ！リクエスト(非公式)
+		p 俺の考えた最強の駅メモを書いてけ（適当
 		- if flash[:notice]
-			.alert.alert-success = flash[:notice]
+			.container
+				.alert.alert-success = flash[:notice]
+		- if flash[:alert]
+			.container
+				.alert.alert-danger = flash[:alert]
 		- if session[:username]
 			p = button_to "リクエストを書く(#{session[:username]})" , new_request_path, class: "btn btn-lg btn-primary", method: "get"
 			p = button_to 'ログアウト', logout_path, class: "btn btn-warning", method: "get"
@@ -11,20 +15,26 @@
 			p = button_to 'リクエストを書く(要Twitter認証)', '/auth/twitter', class: "btn btn-lg btn-primary"
 
 .container
-	.panel.panel-default
-		.panel-body
-			table.table
-				thead
-					tr
-						th リクエスト内容
-						th 賛成数
-				tbody
-				- @requests.each do |req|
-					tr
-						td
-							h3 = req.title
-						td
-							p
-								button.btn.btn-default
-									span.badge 4
-									span 賛成
+	.row
+		table.table
+			thead
+				tr
+					th.col-md-8 リクエスト内容
+					th.col-md-2 投稿者
+					th.col-md-2 支持数
+			tbody
+			- @requests.each do |req|
+				tr
+					td.col-md-8
+						h4 = req.title
+					td.col-md-2
+						p = req.username
+					td.col-md-2
+						= button_to '/requests/vote/'+req.id.to_s, class: 'btn btn-default',data: { title: "確認",confirm: "投票します。よろしいですか？", commit: "投票"} do
+							span.label.label-info = "#{req.favor_num}人"
+							|　賛成
+	.well
+		b 注意
+		ul
+			li 非公式であり、(株)モバイルファクトリーとは一切関係ありません。
+			li 同一人物による多数投稿防止の為Twitterでのログインを設けております。一切のKey保存、ツイートは行いません。
