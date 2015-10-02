@@ -1,5 +1,5 @@
 class AddFavorListToRequest < ActiveRecord::Migration
   def change
-    add_column :requests, :Favor_list, :text
+    add_column :requests, :favor_list, :text
   end
 end

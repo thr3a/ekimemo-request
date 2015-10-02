@@ -16,8 +16,9 @@ class RequestsController < ApplicationController
 	def create
 		@request = Request.new(permitted_params)
 		@request.favor_num = 1
+		@request.favor_list = session[:userid]
 		if @request.save
-			redirect_to root_path
+			redirect_to root_path, notice:"投稿に成功しました"
 		else
 			render 'new'
 		end
@@ -26,14 +27,19 @@ class RequestsController < ApplicationController
 	# POST /requests/vote/:id
 	def vote
 		@request = Request.find(params[:id])
-		if @request.increment!(:favor_num)
-			redirect_to root_path, notice:"賛成に投票しました"
+		favor_list = @request.favor_list.split(',')
+		if favor_list.include?(session[:userid])
+			redirect_to root_path, alert:"すでに投票済みです。"
 		else
-			redirect_to root_path, alert:"投票に失敗しました"
+			if @request.increment!(:favor_num) && @request.update(favor_list: @request.favor_list+",#{session[:userid]}")
+				redirect_to root_path, notice:"賛成に投票しました"
+			else
+				redirect_to root_path, alert:"投票に失敗しました"
+			end
 		end
 	end
 	private
 	def permitted_params
-		params.require(:request).permit(:title, :userid, :username, :state, :favor_num)
+		params.require(:request).permit(:title, :userid, :username, :state, :favor_num, :favor_list)
 	end
 end

@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20151002091242) do
     t.integer  "favor_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "Favor_list"
+    t.text     "favor_list"
   end
 
 end

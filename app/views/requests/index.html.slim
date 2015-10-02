@@ -30,9 +30,15 @@
 					td.col-md-2
 						p = req.username
 					td.col-md-2
-						= button_to '/requests/vote/'+req.id.to_s, class: 'btn btn-default',data: { title: "確認",confirm: "投票します。よろしいですか？", commit: "投票"} do
-							span.label.label-info = "#{req.favor_num}人"
-							|　賛成
+						- if req.userid == session[:userid]
+							= button_to '/', class: 'btn btn-default disabled' do
+								span.label.label-info = "#{req.favor_num}人"
+								|　あなたです！
+						- else
+							= button_to '/requests/vote/'+req.id.to_s, class: 'btn btn-default',data: { title: "確認",confirm: "投票します。よろしいですか？", commit: "投票"} do
+								span.label.label-info = "#{req.favor_num}人"
+								|　賛成
+
 	.well
 		b 注意
 		ul
