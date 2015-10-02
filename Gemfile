@@ -49,3 +49,5 @@ gem "slim-rails"
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'bootstrap_form'
+# ExecJS::RuntimeUnavailable: Could not find a JavaScript runtime対策
+gem 'therubyracer'
